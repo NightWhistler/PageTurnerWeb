@@ -7,4 +7,6 @@ class AccessKey {
 
     String keyCode
     String keyOwner
+
+    Date createdOn = new Date()
 }

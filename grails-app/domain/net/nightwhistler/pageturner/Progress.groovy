@@ -16,5 +16,4 @@ class Progress {
 
     int bookIndex
     int progress
-
 }

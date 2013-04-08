@@ -22,8 +22,20 @@ class ProgressController {
                 progress = progress[0..4]
             }
 
-            if ( progress.size > 0 ) {    
-                render progress as JSON
+            if ( progress.size > 0 ) { 
+                
+                //Only show the relevant parts
+                def propMap = progress.collect { progressItem ->                    
+                    [
+                        deviceName: progressItem.deviceName, 
+                        storedOn: progressItem.storedOn, 
+                        percentage: progressItem.percentage,
+                        bookIndex: progressItem.bookIndex, 
+                        progress: progressItem.progress 
+                    ]
+                }
+
+                render propMap as JSON
             } else {
                 response.status = 404
                 render "Key ${params.progressKey} not found."

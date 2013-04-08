@@ -10,7 +10,7 @@ class ProgressController {
         
         log.info "Query for: ${params.progressKey} with access key ${params.accessKey}"
 
-        if ( ! params.accessKey || ! AccessKey.findByKeyCode( params.accessKey ) ) {
+        if ( ! getAccessKey(params.accessKey) ) {
             response.status = 403
             render "Invalid access key."
         } else {
@@ -31,13 +31,22 @@ class ProgressController {
         }
     }
 
+    private def getAccessKey( keyString ) {
+        def key = params.accessKey ? AccessKey.findByKeyCode( params.accessKey ) : null;
+        
+        if ( key?.expiresOn && key?.expiresOn < new Date() ) {
+            return null
+        } 
+        return key
+    }
+
     def save = {
 
         log.debug "Saving values: ${params}"
         
-        if ( !params.accessKey || ! AccessKey.findByKeyCode( params.accessKey ) ) {
+        if ( ! getAccessKey(params.accessKey) ) {
             response.status = 403
-            render "Invalid access key."
+            render "Invalid or expired access key."
         } else {
         
 

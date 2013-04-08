@@ -16,4 +16,7 @@ class Progress {
 
     int bookIndex
     int progress
+
+    //We mostly store this for reporting reasons.
+    String accessKey
 }

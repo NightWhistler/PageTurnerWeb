@@ -8,6 +8,7 @@ class UrlMappings {
 		}
 
         "/progress/$progressKey?"(resource:"progress")
+        "/progress//$progressKey?"(resource:"progress")
 
 		"/"(view:"/index")
 		"500"(view:'/error')

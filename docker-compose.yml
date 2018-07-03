@@ -1,0 +1,19 @@
+version: "3"
+services:
+  database:
+   image: mysql:5
+   environment:
+     - MYSQL_ROOT_PASSWORD=f00b4r
+     - MYSQL_DATABASE=pageturner_sync
+     - MYSQL_USER=pageturner
+     - MYSQL_PASSWORD=b4rf00
+
+  pageturner_web:
+    image: registry.nightwhistler.net/pageturner_web:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - CATALINA_OPTS=-Ddb.url=jdbc:mysql://database/pageturner_sync?useSSL=false -Ddb.username=pageturner -Ddb.password=b4rf00
+
+
+

@@ -24,10 +24,12 @@ environments {
         }
     }
     production {
-        
-        dataSource {
-			dbCreate = "update"
-			jndiName = "java:/comp/env/jdbc/pageturnerDb"
-		}
+      dataSource {
+        dbCreate = "update"
+        driverClassName = "com.mysql.jdbc.Driver"
+        url = System.properties['db.url']
+        username = System.properties['db.username']
+        password = System.properties['db.password']
+      }
     }
 }

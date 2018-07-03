@@ -1,3 +1,5 @@
+#Pageturner synchronization server
+
 This is the synchronization back-end service for PageTurner.
 
 It's a simple Grails app which can be run from Tomcat and which stores and retrieves reading progress for users.
